@@ -1,31 +1,37 @@
 // ITERATION 1
 
-function updateSubtotal(product) {
-  console.log('Calculating subtotal, yey!');
-
-  //... your code goes here
+function updateSubtotal(products, totalDOM) {
+  let total = 0;
+  products.map((product) => {
+    const price = product.querySelector('.price span').innerHTML;
+    const quantity = product.querySelector('.quantity input').value;
+    const subtotal = price * quantity;
+    product.querySelector('.subtotal span').innerHTML = subtotal;
+    total += subtotal;
+    console.log(total);
+    totalDOM.innerHTML = total;
+  });
 }
+// }PORQUE NO DEBO PONER EL CONSOLELOG PORQUE ME PETA?
+// console.log(updateSubtotal(product));
 
 function calculateAll() {
-  // code in the following two lines is added just for testing purposes.
-  // it runs when only iteration 1 is completed. at later point, it can be removed.
-  const singleProduct = document.querySelector('.product');
-  updateSubtotal(singleProduct);
-  // end of test
-
-  // ITERATION 2
-  //... your code goes here
-
-  // ITERATION 3
-  //... your code goes here
+  const allProducts = Array.from(document.getElementsByClassName('product'));
+  // console.log(`Hola bueubeueubebeenas`, allProducts);
+  const total = document.querySelector('#total-value span');
+  updateSubtotal(allProducts, total);
 }
 
 // ITERATION 4
 
 function removeProduct(event) {
+  //Bloqueadisssimo xddddddd nose como hacerlo ahora mismo
   const target = event.currentTarget;
   console.log('The target in remove is:', target);
-  //... your code goes here
+  const remove = window.querySelectorAll('.btn btn-remove');
+  for (let i = 0; i < remove.length; i++) {
+    remove[i].addEventListener('click', removeProduct);
+  }
 }
 
 // ITERATION 5
